@@ -1,0 +1,56 @@
+<core:FragmentDefinition 	xmlns:f="sap.ui.layout.form" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+		<Dialog
+		id="mainDialog"
+		title="Update Detail">
+		<content>
+			<VBox class="sapUiSmallMargin" id="formContainer" 		>
+		<f:SimpleForm id="SimpleFormChange471"
+			editable="true"
+			layout="ResponsiveGridLayout"
+			labelSpanXL="4"
+			labelSpanL="4"
+			labelSpanM="4"
+			labelSpanS="12"
+			adjustLabelSpan="false"
+			emptySpanXL="1"
+			emptySpanL="1"
+			emptySpanM="1"
+			emptySpanS="0"
+			columnsXL="1"
+			columnsL="1"
+			columnsM="1"
+			singleContainerFullSize="false" >
+			<f:content>
+				<Label text="Product ID" />
+				<Input id="name" value="{detail>/ProductID}" />
+				<Label text="Order ID" />
+				<Input value="{detail>/OrderID}">
+				</Input>
+				<Label text="Precio unitario" />
+				<Input value="{detail>/UnitPrice}">
+				</Input>
+				<Label text="Cantidad" />
+				<Input value="{detail>/Quantity}"/>
+			</f:content>
+            	
+		</f:SimpleForm>
+	</VBox>
+    </content>
+    <footer>
+			<Toolbar>
+				<content>
+					
+					<ToolbarSpacer />
+					<Button type="Accept"
+							text="Save"
+							press="._generateInvalidUserInput" />
+					<Button id="Reject"
+						text="Reject"
+						type="Reject"
+						press="._closeDialog"
+						ariaHasPopup="Dialog" />
+				</content>
+			</Toolbar>
+		</footer>
+    </Dialog>
+</core:FragmentDefinition>

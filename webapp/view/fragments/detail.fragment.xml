@@ -1,0 +1,40 @@
+<core:FragmentDefinition xmlns:m="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form"
+	xmlns="sap.ui.table">
+		<m:Page>
+    		<Table
+				id="tbOrderDetails"
+				rows="{modelDetails>/}"
+				selectionMode="Single"
+				ariaLabelledBy="title">
+				<columns>
+					<Column width="auto">
+						<m:Label text="Product ID" />
+						<template>
+						<m:Text text="{modelDetails>Product/ProductName}" wrapping="false" />
+						</template>
+					</Column>
+                    <Column width="auto">
+						<m:Label text="Order ID " />
+						<template>
+						<m:Text text="{modelDetails>OrderID}" wrapping="false" />
+							<!--<m:Text text="{modelDetails>ProductID}" wrapping="false" />-->
+						</template>
+					</Column>
+					 <Column width="auto" visible="true">
+						<m:Label text="Product ID " />
+						<template>
+						<m:Text text="{modelDetails>ProductID}" wrapping="false" />
+							<!--<m:Text text="{modelDetails>ProductID}" wrapping="false" />-->
+						</template>
+					</Column>
+                    </columns>
+                    </Table>
+			<m:footer>
+			<m:OverflowToolbar>
+				<m:ToolbarSpacer/>
+				<m:Button id="btEdit" text="Edit" press="onOpenDialog"/>
+				<m:Button text="Delete" press="onDelete"/>
+			</m:OverflowToolbar>
+			</m:footer>
+		</m:Page>
+</core:FragmentDefinition>

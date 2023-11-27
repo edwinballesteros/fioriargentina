@@ -1,0 +1,18 @@
+<mvc:View controllerName="project3.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+    <Page id="page" title="{i18n>title}">
+       	<SplitContainer
+		id="SplitContDemo"
+		initialDetail="detail"
+		initialMaster="master">
+		<detailPages>
+			<core:Fragment fragmentName="project3.view.fragments.detail"/>
+		</detailPages>
+		<masterPages>
+			<core:Fragment fragmentName="project3.view.fragments.listOrders"/>
+		</masterPages>
+	</SplitContainer>
+    </Page>
+</mvc:View>
