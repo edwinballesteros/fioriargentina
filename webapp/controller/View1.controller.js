@@ -106,10 +106,11 @@ sap.ui.define([
                 var oBinding = oList.getBinding("items");
                 oBinding.filter(aFilters, "Application");
             },
-            onOpenDialog: function () {
-                let oTable = this.byId("tbOrderDetails");
+            onOpenDialog: function (oEvent) {
+               let oTable = this.byId("tbOrderDetails");
                let itemSel = oTable.getSelectedIndex();
-
+               let txtButton = oEvent.getSource().data("titleApp");
+               this.getView().setModel(new JSONModel({ "txtButton" : txtButton}),"frmData")
                if (itemSel != -1){
                let idProducto = oTable.getRows()[itemSel].getCells()[2].getText()
                let idOrden = oTable.getRows()[itemSel].getCells()[1].getText();
@@ -124,6 +125,7 @@ sap.ui.define([
                             oDetail.OrderID = result.OrderID;
                             oDetail.Quantity = result.Quantity;
                             oDetail.UnitPrice = result.UnitPrice;
+                            oDetail.Discount = result.Discount;
                             that.getView().setModel(new JSONModel(oDetail), "detail")
                             if (!that.oMPDialog) {
                                 that.oMPDialog = that.loadFragment({
@@ -146,6 +148,66 @@ sap.ui.define([
                }
                 
          
+            },	_closeDialog: function () {
+                this.oDialog.close();
+            },
+            onUpdate : function(){
+
+               var oModel = this.getView().getModel();
+               MessageBox.confirm(formatter.onGetI18nText(this, "confirmacionUpdate"),
+               {
+				actions: [MessageBox.Action.OK, MessageBox.Action.CLOSE],
+				onClose: function (sAction) {
+                    if (sAction == MessageBox.Action.OK){
+                        let oData = that.getView().getModel("detail").getData();
+                        return new Promise(function (resolve, reject) {
+                            oModel.update("/Order_Details(OrderID="+ oData.OrderID + ",ProductID="+ oData.ProductID + ")" ,oData, {
+                                success: function (result) {
+                                    let datos = result;
+                                    MessageToast.show("Exitoso")
+                                    resolve(result);
+                                    that.oDialog.close();
+                                },
+                                error: function (error) {
+                                    that.oDialog.close();
+                                    MessageToast.show(error.message)
+                                    reject(error);
+                                }
+                            });
+                        });
+                    }
+				}
+			    })
+            
+            },
+            onCreate : function(){
+
+               var oModel = this.getView().getModel();
+               MessageBox.confirm(formatter.onGetI18nText(this, "confirmacionUpdate"),
+               {
+				actions: [MessageBox.Action.OK, MessageBox.Action.CLOSE],
+				onClose: function (sAction) {
+                    if (sAction == MessageBox.Action.OK){
+                        let oData = that.getView().getModel("detail").getData();
+                        return new Promise(function (resolve, reject) {
+                            oModel.update("/Order_Details(OrderID="+ oData.OrderID + ",ProductID="+ oData.ProductID + ")" ,oData, {
+                                success: function (result) {
+                                    let datos = result;
+                                    MessageToast.show("Exitoso")
+                                    resolve(result);
+                                    that.oDialog.close();
+                                },
+                                error: function (error) {
+                                    that.oDialog.close();
+                                    MessageToast.show(error.message)
+                                    reject(error);
+                                }
+                            });
+                        });
+                    }
+				}
+			    })
+            
             }
         });
     });

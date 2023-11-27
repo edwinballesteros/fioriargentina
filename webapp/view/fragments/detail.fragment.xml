@@ -1,5 +1,5 @@
 <core:FragmentDefinition xmlns:m="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form"
-	xmlns="sap.ui.table">
+	xmlns="sap.ui.table" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
 		<m:Page>
     		<Table
 				id="tbOrderDetails"
@@ -27,12 +27,14 @@
 							<!--<m:Text text="{modelDetails>ProductID}" wrapping="false" />-->
 						</template>
 					</Column>
+					
                     </columns>
                     </Table>
 			<m:footer>
 			<m:OverflowToolbar>
 				<m:ToolbarSpacer/>
-				<m:Button id="btEdit" text="Edit" press="onOpenDialog"/>
+				<m:Button id="btCreate" text="Create" press="onOpenDialog" app:titleApp="Crear"/>
+				<m:Button id="btEdit" text="Edit" press="onOpenDialog" app:titleApp="Actualizar"/>
 				<m:Button text="Delete" press="onDelete"/>
 			</m:OverflowToolbar>
 			</m:footer>

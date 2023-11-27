@@ -1,4 +1,5 @@
-<core:FragmentDefinition 	xmlns:f="sap.ui.layout.form" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+<core:FragmentDefinition 	xmlns:f="sap.ui.layout.form" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form"
+>
 		<Dialog
 		id="mainDialog"
 		title="Update Detail">
@@ -31,6 +32,10 @@
 				</Input>
 				<Label text="Cantidad" />
 				<Input value="{detail>/Quantity}"/>
+				<Label text="Descuento" />
+				<Input value="{detail>/Discount}"/>
+				<Label text="Total" />
+				<Input value="{= parseFloat(${detail>/Quantity}*${detail>/UnitPrice}).toFixed(2)}" editable="false"/>
 			</f:content>
             	
 		</f:SimpleForm>
@@ -42,8 +47,8 @@
 					
 					<ToolbarSpacer />
 					<Button type="Accept"
-							text="Save"
-							press="._generateInvalidUserInput" />
+							text="{frmData>/txtButton}"
+							press=".onUpdate" />
 					<Button id="Reject"
 						text="Reject"
 						type="Reject"
